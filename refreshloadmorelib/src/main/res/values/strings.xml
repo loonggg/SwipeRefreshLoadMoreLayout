@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RefreshLoadMoreLib</string>
+    <string name="app_loading_more">上拉加载更多</string>
+</resources>
