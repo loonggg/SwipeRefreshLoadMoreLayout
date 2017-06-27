@@ -65,6 +65,18 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
         addView(swipeRefreshLayout);
     }
 
+    /**
+     * 设置SwipeRefreshLayout刷新的颜色
+     * @param colors
+     */
+    public void setSwipeRefreshLayoutColor(int... colors) {
+        swipeRefreshLayout.setColorSchemeColors(colors);
+    }
+
+    /**
+     * 设置是否显示加载更多
+     * @param flag
+     */
     public void setLoadMore(boolean flag) {
         adapter.setIsShowLoadMore(flag);
     }

@@ -1,5 +1,6 @@
 package com.loonggg.swiperefreshloadmorelayout;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
                 RecyclerViewHolder mHolder = (RecyclerViewHolder) holder;
             }
         };
+        swipeRefreshLoadMoreLayout.setSwipeRefreshLayoutColor(Color.RED,Color.BLUE,Color.GREEN);
         swipeRefreshLoadMoreLayout.setAdapter(adapter);
         swipeRefreshLoadMoreLayout.setLoadMore(true);
         swipeRefreshLoadMoreLayout.setOnClickLoadMoreListener(new SwipeRefreshLoadMoreLayout.OnClickLoadMoreListener() {
