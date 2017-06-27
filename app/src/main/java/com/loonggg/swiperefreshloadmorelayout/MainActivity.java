@@ -46,13 +46,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
             @Override
             public void onClickLoad() {
                 Toast.makeText(MainActivity.this, "被点击了", Toast.LENGTH_SHORT).show();
-
             }
         });
 
         list.clear();
-        swipeRefreshLoadMoreLayout.setLoadMore(false);
-        swipeRefreshLoadMoreLayout.setEmptyView(R.layout.item_rv);
+        swipeRefreshLoadMoreLayout.setEmptyView(R.layout.empty_layout);
         adapter.notifyDataSetChanged();
     }
 
