@@ -1,5 +1,5 @@
 # SwipeRefreshLoadMoreLayout
-一个 Material Design 风格的下拉刷新，上拉自动加载更多的库，支持下拉刷新，上拉自动加载更多，还支持点击加载更多，还支持列表为空时显示空状态下的视图。
+一个 Material Design 风格的下拉刷新，上拉自动加载更多的库，支持下拉刷新，上拉自动加载更多，还支持点击加载更多，还支持添加header和footer的功能，而且还支持列表为空时显示空状态下的视图。
 
 ## 效果图
 ![](https://raw.githubusercontent.com/loonggg/SwipeRefreshLoadMoreLayout/master/image/ssd.gif)
