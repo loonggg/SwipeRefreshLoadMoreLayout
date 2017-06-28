@@ -19,7 +19,7 @@ allprojects {
 ### Step 2. Add the dependency
 ```java
 dependencies {
-	compile 'com.github.loonggg:SwipeRefreshLoadMoreLayout:v1.1'
+	compile 'com.github.loonggg:SwipeRefreshLoadMoreLayout:v1.2'
 }
 ```
 
@@ -68,7 +68,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
                 RecyclerViewHolder mHolder = (RecyclerViewHolder) holder;
             }
         };
+        swipeRefreshLoadMoreLayout.setSwipeRefreshLayoutColor(Color.RED, Color.BLUE, Color.GREEN);
         swipeRefreshLoadMoreLayout.setAdapter(adapter);
+        swipeRefreshLoadMoreLayout.setHeaderView(R.layout.header_layout);
         swipeRefreshLoadMoreLayout.setLoadMore(true);
         swipeRefreshLoadMoreLayout.setOnClickLoadMoreListener(new SwipeRefreshLoadMoreLayout.OnClickLoadMoreListener() {
             @Override
@@ -80,6 +82,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
         list.clear();
         swipeRefreshLoadMoreLayout.setEmptyView(R.layout.empty_layout);
         adapter.notifyDataSetChanged();
+
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int pos) {
+
+            }
+        });
     }
 
 
@@ -116,6 +125,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
     }
 }
 ```
+
+### 特别注意
+```
+swipeRefreshLoadMoreLayout.setAdapter(adapter);
+swipeRefreshLoadMoreLayout.setHeaderView(R.layout.header_layout);
+swipeRefreshLoadMoreLayout.setLoadMore(true);
+swipeRefreshLoadMoreLayout.setEmptyView(R.layout.empty_layout);
+```
+swipeRefreshLoadMoreLayout 设置的这些属性，set的这些东西，必须都放在swipeRefreshLoadMoreLayout.setAdapter(adapter)这行代码之后。因为这些属性都跟adapter相关，否则将会空指针异常。
 
 ### 公众号
 欢迎大家关注我的微信公众号：非著名程序员（smart_android），更多好的原创文章均首发于微信订阅号：非著名程序员
