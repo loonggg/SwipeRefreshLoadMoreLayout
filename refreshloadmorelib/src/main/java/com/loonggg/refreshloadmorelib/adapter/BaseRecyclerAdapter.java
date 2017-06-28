@@ -39,6 +39,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     private OnLoadMoreListener onLoadMoreListener;
     private boolean isHeader = false;
     private int resId;
+    private int headerViewId;
     private boolean isShowEmptyView = false;
 
     public BaseRecyclerAdapter(Context context, List<T> list) {
@@ -57,6 +58,12 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
 
     public void setHeaderItem(boolean isHeader) {
         this.isHeader = isHeader;
+    }
+
+    public void setHeaderView(int resId) {
+        setHeaderItem(true);
+        mData.add(0, (T) "header");
+        headerViewId = resId;
     }
 
     @Override
@@ -94,29 +101,30 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
             FootViewHolder footViewHolder = new FootViewHolder(foot_view);
             return footViewHolder;
         } else if (viewType == TYPE_HEADER) {
-            final RecyclerViewHolder holder = new RecyclerViewHolder(mContext, mInflater.inflate
-                    (getItemLayoutId(viewType), parent, false));
-            if (mClickListener != null) {
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
-                    }
-                });
-            }
-
-            if (mLongClickListener != null) {
-                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        mLongClickListener.onItemLongClick(holder.itemView, holder
-                                .getLayoutPosition());
-
-                        return true;
-                    }
-                });
-            }
-            return holder;
+//            final RecyclerViewHolder holder = new RecyclerViewHolder(mContext, mInflater.inflate
+//                    (getItemLayoutId(viewType), parent, false));
+//            if (mClickListener != null) {
+//                holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        mClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
+//                    }
+//                });
+//            }
+//
+//            if (mLongClickListener != null) {
+//                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                    @Override
+//                    public boolean onLongClick(View v) {
+//                        mLongClickListener.onItemLongClick(holder.itemView, holder
+//                                .getLayoutPosition());
+//
+//                        return true;
+//                    }
+//                });
+//            }
+            View v = mInflater.inflate(headerViewId, parent, false);
+            return new MyHeaderViewHolder(v);
         }
         return null;
     }
@@ -144,10 +152,12 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
                         footViewHolder.pb.setVisibility(View.VISIBLE);
                         break;
                 }
+            } else if (holder instanceof MyHeaderViewHolder) {
             } else {
                 bindData(holder, position, mData.get(position));
             }
         } else if (holder instanceof MyEmptyViewHolder) {
+        } else if (holder instanceof MyHeaderViewHolder) {
         } else {
             bindData(holder, position, mData.get(position));
         }
@@ -158,6 +168,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     }
 
     public void setEmptyView(int resId) {
+        setIsShowLoadMore(false);
+        setIsShowEmptyView(true);
         this.resId = resId;
     }
 
@@ -266,6 +278,13 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     public static class MyEmptyViewHolder extends RecyclerView.ViewHolder {
 
         public MyEmptyViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    public static class MyHeaderViewHolder extends RecyclerView.ViewHolder {
+
+        public MyHeaderViewHolder(View itemView) {
             super(itemView);
         }
     }

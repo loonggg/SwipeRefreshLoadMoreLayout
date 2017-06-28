@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.loonggg.refreshloadmorelib.adapter.BaseRecyclerAdapter;
@@ -41,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
                 RecyclerViewHolder mHolder = (RecyclerViewHolder) holder;
             }
         };
-        swipeRefreshLoadMoreLayout.setSwipeRefreshLayoutColor(Color.RED,Color.BLUE,Color.GREEN);
+        swipeRefreshLoadMoreLayout.setSwipeRefreshLayoutColor(Color.RED, Color.BLUE, Color.GREEN);
         swipeRefreshLoadMoreLayout.setAdapter(adapter);
+        swipeRefreshLoadMoreLayout.setHeaderView(R.layout.header_layout);
         swipeRefreshLoadMoreLayout.setLoadMore(true);
         swipeRefreshLoadMoreLayout.setOnClickLoadMoreListener(new SwipeRefreshLoadMoreLayout.OnClickLoadMoreListener() {
             @Override
@@ -54,6 +56,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
         list.clear();
         swipeRefreshLoadMoreLayout.setEmptyView(R.layout.empty_layout);
         adapter.notifyDataSetChanged();
+
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int pos) {
+
+            }
+        });
     }
 
 

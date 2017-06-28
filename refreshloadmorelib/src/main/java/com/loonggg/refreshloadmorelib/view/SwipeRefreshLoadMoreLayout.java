@@ -60,13 +60,49 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
                 lastVisibleItem = layoutManager.findLastVisibleItemPosition();
             }
         });
-
-
         addView(swipeRefreshLayout);
     }
 
     /**
+     * 设置 headerView 布局
+     *
+     * @param resId
+     */
+    public void setHeaderView(int resId) {
+        adapter.setHeaderItem(true);
+        adapter.setHeaderView(resId);
+    }
+
+    /**
+     * 设置底部上拉更多的文字
+     *
+     * @param str
+     */
+    public void setLoadMoreString(String str) {
+        adapter.setLoadMoreString(str);
+    }
+
+    /**
+     * 返回 SwipeRefreshLayout ，这样可以用户更多的自定义
+     *
+     * @return
+     */
+    public SwipeRefreshLayout getSwipeRefreshLayout() {
+        return swipeRefreshLayout;
+    }
+
+    /**
+     * 返回 RecyclerView
+     *
+     * @return
+     */
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    /**
      * 设置SwipeRefreshLayout刷新的颜色
+     *
      * @param colors
      */
     public void setSwipeRefreshLayoutColor(int... colors) {
@@ -74,7 +110,17 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
     }
 
     /**
+     * 设置否是可以下拉刷新
+     *
+     * @param flag
+     */
+    public void setIsSwipeRefresh(boolean flag) {
+        swipeRefreshLayout.setEnabled(flag);
+    }
+
+    /**
      * 设置是否显示加载更多
+     *
      * @param flag
      */
     public void setLoadMore(boolean flag) {
