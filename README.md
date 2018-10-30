@@ -19,7 +19,7 @@ allprojects {
 ### Step 2. Add the dependency
 ```java
 dependencies {
-	compile 'com.github.loonggg:SwipeRefreshLoadMoreLayout:v1.2'
+	compile 'com.github.loonggg:SwipeRefreshLoadMoreLayout:v1.3'
 }
 ```
 
@@ -155,3 +155,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+
