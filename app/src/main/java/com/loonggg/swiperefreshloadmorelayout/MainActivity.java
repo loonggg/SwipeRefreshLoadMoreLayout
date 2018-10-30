@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
         swipeRefreshLoadMoreLayout.setLayoutManager(mLayoutManager);
         swipeRefreshLoadMoreLayout.setOnLoadMoreListener(this);
         swipeRefreshLoadMoreLayout.setOnRefreshListener(this);
+        swipeRefreshLoadMoreLayout.setItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         getDatas();
         final BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<String>(this, list) {
             @Override

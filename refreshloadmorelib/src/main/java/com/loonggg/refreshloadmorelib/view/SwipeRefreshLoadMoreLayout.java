@@ -127,6 +127,10 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
         adapter.setIsShowLoadMore(flag);
     }
 
+    public void setItemDecoration(RecyclerView.ItemDecoration deco){
+        recyclerView.addItemDecoration(deco);
+    }
+
     /**
      * 下拉刷新完毕
      */
