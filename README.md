@@ -19,7 +19,7 @@ allprojects {
 ### Step 2. Add the dependency
 ```java
 dependencies {
-	implementation 'com.github.loonggg:SwipeRefreshLoadMoreLayout:v1.3'
+	implementation 'com.github.loonggg:SwipeRefreshLoadMoreLayout:v1.4'
 }
 ```
 
