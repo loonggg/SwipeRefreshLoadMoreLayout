@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLoadM
         swipeRefreshLoadMoreLayout.setLayoutManager(mLayoutManager);
         swipeRefreshLoadMoreLayout.setOnLoadMoreListener(this);
         swipeRefreshLoadMoreLayout.setOnRefreshListener(this);
+        swipeRefreshLoadMoreLayout.setRefreshing(true);
         swipeRefreshLoadMoreLayout.setItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         getDatas();
         final BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<String>(this, list) {

@@ -64,6 +64,14 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
     }
 
     /**
+     * 设置加载圈状态，是否显示
+     * @param flag
+     */
+    public void setRefreshing(boolean flag){
+        swipeRefreshLayout.setRefreshing(flag);
+    }
+
+    /**
      * 设置 headerView 布局
      *
      * @param resId
