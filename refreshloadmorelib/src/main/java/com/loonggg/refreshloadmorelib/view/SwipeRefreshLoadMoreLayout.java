@@ -47,10 +47,13 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter
-                        .getItemCount()) {
-                    if (onLoadMoreListener != null)
-                        onLoadMoreListener.onLoad();
+                if (adapter != null) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == adapter
+                            .getItemCount()) {
+                        if (onLoadMoreListener != null) {
+                            onLoadMoreListener.onLoad();
+                        }
+                    }
                 }
             }
 
@@ -65,9 +68,10 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
 
     /**
      * 设置加载圈状态，是否显示
+     *
      * @param flag
      */
-    public void setRefreshing(boolean flag){
+    public void setRefreshing(boolean flag) {
         swipeRefreshLayout.setRefreshing(flag);
     }
 
@@ -135,7 +139,7 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
         adapter.setIsShowLoadMore(flag);
     }
 
-    public void setItemDecoration(RecyclerView.ItemDecoration deco){
+    public void setItemDecoration(RecyclerView.ItemDecoration deco) {
         recyclerView.addItemDecoration(deco);
     }
 
