@@ -146,15 +146,16 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         if (isLoadMore) {
             if (holder instanceof FootViewHolder) {
                 FootViewHolder footViewHolder = (FootViewHolder) holder;
-                footViewHolder.footer_layout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (onLoadMoreListener != null) {
-                            onLoadMoreListener.loadMore();
-                        }
-                    }
-                });
                 if (!isCustomFooterView) {
+                    footViewHolder.footer_layout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (onLoadMoreListener != null) {
+                                onLoadMoreListener.loadMore();
+                            }
+                        }
+                    });
+
                     switch (load_more_status) {
                         case PULLUP_LOAD_MORE:
                             footViewHolder.foot_view_item_tv.setVisibility(View.VISIBLE);
