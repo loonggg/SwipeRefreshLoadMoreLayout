@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.loonggg.refreshloadmorelib.adapter.BaseRecyclerAdapter;
@@ -83,6 +84,10 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
     public void setHeaderView(int resId) {
         adapter.setHeaderItem(true);
         adapter.setHeaderView(resId);
+    }
+
+    public void setCustomFooterView(boolean flag,View view){
+        adapter.setCustomFooterView(flag,view);
     }
 
     /**
