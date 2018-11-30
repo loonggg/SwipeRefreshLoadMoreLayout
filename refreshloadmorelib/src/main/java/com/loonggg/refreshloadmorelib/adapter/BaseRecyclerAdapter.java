@@ -34,6 +34,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     private OnItemClickListener mClickListener;
     private OnItemLongClickListener mLongClickListener;
     private boolean isLoadMore = false;
+    private boolean isCustomFooterView = false;
+    private View footerView;
     private int size;
     private String loadMoreString = "上拉加载更多";
     private OnLoadMoreListener onLoadMoreListener;
@@ -50,6 +52,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
 
     public void setIsShowLoadMore(boolean flag) {
         isLoadMore = flag;
+    }
+
+    public void setCustomFooterView(boolean flag, View view) {
+        isCustomFooterView = flag;
+        footerView = view;
     }
 
     public void setLoadMoreString(String lms) {
@@ -96,7 +103,12 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
             }
             return holder;
         } else if (isLoadMore && viewType == TYPE_FOOTER) {
-            View foot_view = mInflater.inflate(R.layout.recyclerview_footer_view, parent, false);
+            View foot_view = null;
+            if (isCustomFooterView) {
+                foot_view = footerView;
+            } else {
+                foot_view = mInflater.inflate(R.layout.recyclerview_footer_view, parent, false);
+            }
             //这边可以做一些属性设置，甚至事件监听绑定
             FootViewHolder footViewHolder = new FootViewHolder(foot_view);
             return footViewHolder;
@@ -137,20 +149,25 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
                 footViewHolder.footer_layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (onLoadMoreListener != null)
+                        if (onLoadMoreListener != null) {
                             onLoadMoreListener.loadMore();
+                        }
                     }
                 });
-                switch (load_more_status) {
-                    case PULLUP_LOAD_MORE:
-                        footViewHolder.foot_view_item_tv.setVisibility(View.VISIBLE);
-                        footViewHolder.foot_view_item_tv.setText(loadMoreString);
-                        footViewHolder.pb.setVisibility(View.GONE);
-                        break;
-                    case LOADING_MORE:
-                        footViewHolder.foot_view_item_tv.setVisibility(View.GONE);
-                        footViewHolder.pb.setVisibility(View.VISIBLE);
-                        break;
+                if (!isCustomFooterView) {
+                    switch (load_more_status) {
+                        case PULLUP_LOAD_MORE:
+                            footViewHolder.foot_view_item_tv.setVisibility(View.VISIBLE);
+                            footViewHolder.foot_view_item_tv.setText(loadMoreString);
+                            footViewHolder.pb.setVisibility(View.GONE);
+                            break;
+                        case LOADING_MORE:
+                            footViewHolder.foot_view_item_tv.setVisibility(View.GONE);
+                            footViewHolder.pb.setVisibility(View.VISIBLE);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             } else if (holder instanceof MyHeaderViewHolder) {
             } else {
