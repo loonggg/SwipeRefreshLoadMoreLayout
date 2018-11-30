@@ -35,7 +35,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     private OnItemLongClickListener mLongClickListener;
     private boolean isLoadMore = false;
     private boolean isCustomFooterView = false;
-    private View footerView;
+    private int footerView;
     private int size;
     private String loadMoreString = "上拉加载更多";
     private OnLoadMoreListener onLoadMoreListener;
@@ -54,9 +54,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         isLoadMore = flag;
     }
 
-    public void setCustomFooterView(boolean flag, View view) {
+    public void setCustomFooterView(boolean flag, int resId) {
         isCustomFooterView = flag;
-        footerView = view;
+        footerView = resId;
     }
 
     public void setLoadMoreString(String lms) {
@@ -105,7 +105,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         } else if (isLoadMore && viewType == TYPE_FOOTER) {
             View foot_view = null;
             if (isCustomFooterView) {
-                foot_view = footerView;
+                foot_view = mInflater.inflate(footerView, parent, false);
             } else {
                 foot_view = mInflater.inflate(R.layout.recyclerview_footer_view, parent, false);
             }

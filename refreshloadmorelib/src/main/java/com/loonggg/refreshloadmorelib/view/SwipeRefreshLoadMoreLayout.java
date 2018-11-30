@@ -86,8 +86,8 @@ public class SwipeRefreshLoadMoreLayout extends LinearLayout {
         adapter.setHeaderView(resId);
     }
 
-    public void setCustomFooterView(boolean flag,View view){
-        adapter.setCustomFooterView(flag,view);
+    public void setCustomFooterView(boolean flag,int resId){
+        adapter.setCustomFooterView(flag,resId);
     }
 
     /**
