@@ -169,6 +169,17 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
                         default:
                             break;
                     }
+                }else{
+                    switch (load_more_status) {
+                        case PULLUP_LOAD_MORE:
+                            footViewHolder.footer_layout.setVisibility(View.GONE);
+                            break;
+                        case LOADING_MORE:
+                            footViewHolder.footer_layout.setVisibility(View.VISIBLE);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             } else if (holder instanceof MyHeaderViewHolder) {
             } else {
